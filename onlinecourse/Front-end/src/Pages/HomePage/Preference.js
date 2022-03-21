@@ -16,7 +16,16 @@ class Preference extends Component {
             "Web Development":{
                 touched:false,
             },
+            "Programming Languages":{
+                touched:false,
+            },
             "AI / ML":{
+                touched:false,
+            },
+            "Cloud Development":{
+                touched:false,
+            },
+            "Data Science":{
                 touched:false,
             },
         },
@@ -123,7 +132,7 @@ AlertError(alertmsg, alertType) {
         }
   
 
-            var webdev ,ml;
+            var webdev ,ml, cd, ds,pl;
 
             if(this.state.Courses["Web Development"].touched){
                 webdev = ['touched']
@@ -132,7 +141,27 @@ AlertError(alertmsg, alertType) {
                 webdev=['']
             }
 
+            if(this.state.Courses["Programming Languages"].touched){
+                pl = ['touched']
+            }
+            else{
+                pl = ['']
+            }
+
+            if(this.state.Courses["Cloud Development"].touched){
+                cd = ['touched']
+            }
+            else{
+                cd=['']
+            }
             
+            if(this.state.Courses["Data Science"].touched){
+                ds = ['touched']
+            }
+            else{
+                ds=['']
+            }
+
             if(this.state.Courses["AI / ML"].touched){
                 ml = ['touched']
             }
@@ -161,8 +190,11 @@ AlertError(alertmsg, alertType) {
                 </div>
                 <div className="Preference-buttons">
 
-                    <button className={webdev.join(' ')} onClick={()=> this.categoryHandler("Web Development")}> Development</button>
-                    <button className={ml.join(' ')} onClick={()=> this.categoryHandler("AI / ML")}> ML</button>
+                    <button className={webdev.join(' ')} onClick={()=> this.categoryHandler("Web Development")}>Web Development</button>
+                    <button className={pl.join(' ')} onClick={()=> this.categoryHandler("Programming Languages")}>Programming Languages</button>
+                    <button className={ml.join(' ')} onClick={()=> this.categoryHandler("AI / ML")}>AI / ML</button>
+                    <button className={cd.join(' ')} onClick={()=> this.categoryHandler("Cloud Development")}>Cloud Development</button>
+                    <button className={ds.join(' ')} onClick={()=> this.categoryHandler("Data Science")}> Data Science</button>
                     
                 </div>
 

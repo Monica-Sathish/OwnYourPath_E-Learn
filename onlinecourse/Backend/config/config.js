@@ -1,5 +1,5 @@
 // sendgrid key for OTP
-exports.Sendgrid=process.env.SENDGRID_KEY;
+exports.password=process.env.MAIL_PASS;
 
 // mongo database
 exports.mongo = process.env.MONGO_DATABASE;
@@ -11,9 +11,5 @@ exports.refereshToken=process.env.REFRESH_TOKEN_SECRET;
 
 exports.accessTokenLife=process.env.ACCESS_TOKEN_LIFE;
 exports.refereshTokenLife=process.env.REFRESH_TOKEN_LIFE;
-
-
-// google auth
-exports.googleAuth = process.env.OAuth2Client;
 
 

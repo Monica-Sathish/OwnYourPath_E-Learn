@@ -3,15 +3,17 @@ const jwt = require("jsonwebtoken");
 const User = require('../model/user');
 const Otp = require('../model/otp');
 const nodemailer=require('nodemailer');
-const sendgridTransport=require('nodemailer-sendgrid-transport');
 const {validationResult}=require('express-validator')
 const api_key = require('../config/config');
 
-const transporter =nodemailer.createTransport(sendgridTransport({
-    auth:{
-        api_key: "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"
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'ownyourpath.urs@gmail.com',
+      pass: api_key.password,
     }
-}))
+  });
+  
 
 
 exports.signup = (req,res)=>{
@@ -61,7 +63,7 @@ exports.signup = (req,res)=>{
         }).then(res =>{
             transporter.sendMail({
                 to:email,
-                from:"ownyourpath.us@gmail.com",
+                from:"ownyourpath.urs@gmail.com",
                 subject:"OTP Verification",
                 html:` '<h1>Please Verify your account using this OTP: !</h1>
                         <p>OTP:${otp}</p>'`
@@ -134,7 +136,6 @@ exports.otpVerification = (req,res,next)=>{
 
             })
         }
-        
         
     })
     .catch((err) => {

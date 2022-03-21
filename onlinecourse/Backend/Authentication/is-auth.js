@@ -34,9 +34,6 @@ exports.authentication= (req,res,next)=>{
       //console.log("this is the payload of access token",payload)
       res.userID=payload['username']
       next();
-      
-
-  
    }
    
 }

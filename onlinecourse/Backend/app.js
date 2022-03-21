@@ -21,14 +21,6 @@ const MONGODB_URI =api_key.mongo;
 const app = express();
 const server = http.createServer(app);
 
-// const client = redis.createClient({
-//   host: api_key.redisHost,
-//   port: api_key.redisPort,
-//   password: api_key.redisPassword
-// });
-
-
-
 
 app.use(bodyParser.json()); 
 app.use(express.static(path.join(__dirname, 'public')));

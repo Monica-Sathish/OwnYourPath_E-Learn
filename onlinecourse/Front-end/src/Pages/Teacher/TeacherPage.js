@@ -73,7 +73,10 @@ class TeacherPage extends Component{
                   
                 },
                 "Web Development":false,
+                "Programming Languages":false,
                 "AI / ML": false,
+                "Cloud Development":false,
+                "Data Science":false,
 
                 
             
@@ -161,7 +164,7 @@ class TeacherPage extends Component{
         alertType:" ",
         
     },
-    CourseNames:["Web Development","AI / ML"],
+    CourseNames:["Web Development","Programming Languages","AI / ML","Cloud Development","Data Science"],
     isLoggedIn:false,
     userName:"",
     alertPressed:false,
@@ -365,6 +368,9 @@ class TeacherPage extends Component{
     
         let classWeb=[];
         let classML=[];
+        let classCd=[];
+        let classDs=[];
+        let classPL=[];
         let Welcome = null;
         let alertContent = null;
         let fileName=null;
@@ -384,7 +390,24 @@ class TeacherPage extends Component{
             //console.log("clicked11",classWeb.join(' '),this.state.Form.category['Web Development'])
         }
         else classWeb=[];
+
+        if(this.state.Form.category['Programming Languages']){
+            classPL=['ButtonClicked']
+        }
+        else classPL=[];
+
+        if(this.state.Form.category['Cloud Development']){
+            classCd=['ButtonClicked']
+            //console.log("clicked11",classWeb.join(' '),this.state.Form.category['Web Development'])
+        }
+        else classCd=[];
     
+        if(this.state.Form.category['Data Science']){
+            classDs=['ButtonClicked']
+            //console.log("clicked11",classWeb.join(' '),this.state.Form.category['Web Development'])
+        }
+        else classDs=[];
+
         if(this.state.Form.category['AI / ML']){
             classML=['ButtonClicked']
         }
@@ -464,8 +487,11 @@ class TeacherPage extends Component{
             <p className="CourseCategoryTitle">Course Category</p>
 
             <div className="Teacher-Courses-Buttons">
-                        <button onClick={()=> this.categoryHandler("Web Development")} className={classWeb.join(' ')} >Web Dev</button>
-                        <button className={classML.join(' ')} onClick={()=> this.categoryHandler("AI / ML")}>AI /  ML</button>
+                        <button onClick={()=> this.categoryHandler("Web Development")} className={classWeb.join(' ')} > Web Development</button>
+                        <button className={classPL.join(' ')} onClick={()=> this.categoryHandler("Programming Languages")}>Programming Languages</button>
+                        <button className={classML.join(' ')} onClick={()=> this.categoryHandler("AI / ML")}>AI / ML</button>
+                        <button className={classCd.join(' ')} onClick={()=> this.categoryHandler("Cloud Development")}>Cloud Development</button>
+                        <button className={classDs.join(' ')} onClick={()=> this.categoryHandler("Data Science")}> Data Science</button>
                         
             </div>
 
@@ -561,7 +587,7 @@ class TeacherPage extends Component{
 
         
             <div className="Welcome-msg sumbitVideoBtn">
-                <button onClick={this.sumbitButton} >Submit </button>
+                <button onClick={this.sumbitButton} >Next</button>
             </div>
 
           <div>

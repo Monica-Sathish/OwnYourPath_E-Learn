@@ -9,7 +9,7 @@ class HomepageBanner extends Component{
         let text=null;
         let Banner=null;
 
-        if(this.props.img === 'all'){
+        if(this.props.img){
              text = ( <p className="Banner-text">The EXPERT in Anything <br/>Was Once A BEGINNER..</p> );
             }
 

@@ -2,8 +2,6 @@ import React from "react";
 import './CSS/CategoriesCard.css';
 import Rating from '../CoursePage/Rating';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-//import Python from '../../../assets/Images/python.png';
-//import ML from '../../../assets/Images/ml.png';
 
 const HomeProgressCourse =(props)=>{
 
@@ -43,6 +41,3 @@ const HomeProgressCourse =(props)=>{
       }
 
 export default HomeProgressCourse;
-
-
-             

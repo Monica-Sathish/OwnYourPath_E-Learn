@@ -4,7 +4,7 @@ import Rating from '../CoursePage/Rating';
 
 const CourseCards =(props)=>{
     return(
-
+              
               <div className="Course-Cards">                
                       <div className="my-card">
                          <img src={props.img} alt="img" loading="lazy"/> 
