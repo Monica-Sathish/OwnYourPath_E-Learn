@@ -122,15 +122,11 @@ class Homepage extends Component {
                 <div className="mt-3 Course-Content"> 
                     <Categories/>
                     <div className="Course-Content-col">
-                   
                                 <CourseTitle welcomeMessage ={"Welcome"}/>
-
                                 <div className="Course-Content-wrap">
                                     {data}
                                 </div>
-
                                 <Recommendation/>
-
                     </div>
 
                 </div>
