@@ -4,9 +4,7 @@ const {check} = require('express-validator');
 const Auth = require('../Authentication/is-auth');
 const router= express.Router();
 const User=require('../model/user');
-
 router.post('/signup',[
-
     check('email')
     .isEmail()
     .withMessage('Please enter a valid email')
@@ -18,7 +16,6 @@ router.post('/signup',[
             }
         })
     }),
-
     check('password')
         .trim()
         .isLength({min:5}),
@@ -27,11 +24,8 @@ router.post('/signup',[
         .trim()
         .not()
         .isEmpty() 
-
 ],authController.signup);
-
 router.post('/login',[
-
     check('email')
     .isEmail()
     .withMessage('Please enter a valid email')
@@ -42,17 +36,12 @@ router.post('/login',[
                 return Promise.reject('No account with this email !');
             }
         })
-
     })],authController.login);
-
 router.post('/signup/otp',authController.otpVerification);
 router.post('/signup/resetOtp',authController.resetPassword);
 router.post('/signup/otp-resend',authController.resendOtp)
 router.post('/signup/checkOtp',authController.resetOtpVerification);
 router.post('/signup/reset-password',authController.newPassword);
-
 // Fetching access Token using refresh token
 router.post("/auth/token/",Auth.GetnewAccessToken);
-
-
 module.exports = router;

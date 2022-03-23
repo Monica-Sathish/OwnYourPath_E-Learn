@@ -1,11 +1,9 @@
 const Course = require('../model/courses');
-
 exports.uploadCourse =(req,res,next)=>{
-
    // console.log(req.file)
     const imageurl=req.file.path; 
     const userId=req.body._id;
-    const {title,category,name,willLearn,discription,discriptionLong,requirement,price} = req.body;
+    const {title,category,name,willLearn,discription,discriptionLong,requirement} = req.body;
     
     console.log(userId,title)
  
@@ -19,10 +17,8 @@ exports.uploadCourse =(req,res,next)=>{
         discriptionLong:discriptionLong,
         requirement:requirement,
         rating:0,
-        price:price,
         creator:userId,
     });
-
     course.save()
     .then(result=>{
         console.log(result);
@@ -31,20 +27,16 @@ exports.uploadCourse =(req,res,next)=>{
     .catch(err =>{
         console.log(err);
     })
-
 }
-
 exports.uploadVideo = (req,res,next)=>{
     const courseId = req.params.courseID;
     console.log(req.files);
     const videos  = req.files;
    
-
     let videoContent = []
    
     Course.findOne({_id:courseId})
     .then(course=>{
-
         videos.forEach(video=>{
             let videoContentContainer = {
                 videoUrl:null,
@@ -64,7 +56,6 @@ exports.uploadVideo = (req,res,next)=>{
         console.log(err);
     })
 } 
-
 exports.watchedByUsers = (req,res,next)=>{
     const userId=req.body.userId;
     const videoId=req.body.videoId;
@@ -92,7 +83,6 @@ exports.watchedByUsers = (req,res,next)=>{
         console.log(err)
     })
 }
-
 exports.teacherHome =(req,res,next)=>{
     userId = req.body.userId;
     Course.find({creator:userId})
@@ -103,10 +93,8 @@ exports.teacherHome =(req,res,next)=>{
         console.log(err);
     })
 }
-
 exports.deleteCourse=(req,res,next)=>{
     const courseId=req.body.courseId;
-
     Course.findByIdAndRemove({_id:courseId})
     .then(course=>{
         res.status(200).json({message:"course deleted successfully"})
@@ -115,11 +103,9 @@ exports.deleteCourse=(req,res,next)=>{
         console.log(err)
     })
 }
-
 // editing course
 exports.editCourse = (req,res,next)=>{
     const courseId  = req.body.courseId;
-
     Course.findOne({_id:courseId})
     .then(course=>{
         res.status(200).json({course})
@@ -128,7 +114,6 @@ exports.editCourse = (req,res,next)=>{
         console.log(err)
     })
 }
-
 exports.updateCourse=(req,res,next)=>{
       console.log(req.file)
      const courseId=req.body.courseId;
@@ -139,10 +124,8 @@ exports.updateCourse=(req,res,next)=>{
      const willLearn=req.body.willLearn;
      const discription=req.body.discription;
      const discriptionLong=req.body.discriptionLong;
-     const requirement=req.body.requirement;
-     const price = req.body.price
+     const requirement=req.body.requirement
      //const userId=req.body._id;
-
      Course.findById({_id:courseId})
      .then(course=>{
          course.title=title;
@@ -154,17 +137,11 @@ exports.updateCourse=(req,res,next)=>{
          course.discriptionLong=discriptionLong;
          course.requirement=requirement;
         //  course.rating=0;
-         course.price=price;
-
+        
          course.save();
          res.status(201).json({message:"Course editted successfully",course:course})
-
      })
      .catch(err=>{
          console.log(err);
      })
-
-     
- 
 }
-

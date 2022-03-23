@@ -5,7 +5,6 @@
   width: auto;
   white-space: nowrap;
 }
-
 .searchItems ul {
   margin: 0 !important;
   padding: 0 !important;
@@ -19,7 +18,6 @@
   border: 1px solid #8080809e;
   border-radius:4px;
 }
-
 .searchItems ul li {
   /* margin-top: 10px; */
   /* margin-bottom: 10px; */
@@ -31,12 +29,10 @@
   padding-left: 10px;
   padding-right: 10px;
 }
-
 .searchItems ul li:hover {
   cursor: pointer;
   background: #e9ecef;
 }
-
 .name span {
   margin-left: 10px;
   /* opacity: 0.6; */

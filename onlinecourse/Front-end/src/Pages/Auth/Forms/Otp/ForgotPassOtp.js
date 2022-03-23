@@ -7,13 +7,10 @@ import Input from '../../../../components/UI/Input/FormInput';
 import MainPage from '../../../../components/UI/MainPage/MainPage';
 import SpinnerButton from '../../../../components/UI/Spinners/SpinnerButton';
 import SumbitButton from '../../../../components/UI/Buttons/SumbitButton';
-
 class Otp extends Component {
-
     state = { 
             Form:{
                  Otp: {
-
                     placeholder: 'Enter your OTP',
                     value: "",
                     valid: false,
@@ -23,13 +20,11 @@ class Otp extends Component {
                     touched: false,
                 
             },
-
         },
         loading:false,
         Signup_token:localStorage.getItem('token'),
         email:localStorage.getItem('email'),
         redirect:null,
-
         alert: {
             valid:localStorage.getItem('valid'),
             msg:localStorage.getItem('msg'),
@@ -38,7 +33,6 @@ class Otp extends Component {
        
     }
     
-
     AlertError(alertmsg, alertType) {
         const AlertArray = {...this.state.alert};
         AlertArray.msg = alertmsg;
@@ -49,34 +43,25 @@ class Otp extends Component {
     }
     
     
-
-
 //   runs whenever there is any change in the input field
-
     inputchangeHandler = (event,inputIdentifier)=> {
-
         const updatedForm = {
             ...this.state.Form
         }
         const updatedElement = {...updatedForm[inputIdentifier]}
      
         updatedElement.value = event.target.value;
-
         if(updatedElement.value.length>0) 
             updatedElement.touched=true;
-
         else {updatedElement.touched=false;
               updatedElement.error="";  
         }
         
       
-
         updatedForm[inputIdentifier] = updatedElement;
         this.setState({Form: updatedForm});
-
     }
    
-
     formHandler = (event)=> {
         event.preventDefault();
          
@@ -84,30 +69,24 @@ class Otp extends Component {
             this.setState({loading:true});
         
             let formData ={};
-
             for(let formElement in this.state.Form){
                     formData[formElement]=this.state.Form[formElement].value
             }
-
             formData.token = this.state.Signup_token;
            
             
             AuthService.otp(formData)
             .then(response => {console.log('Response:', response) 
-
             if(response.status ===201 || response.status ===200) 
               
                 { 
                  
                  this.setState({loading:false})    
-
-
                  localStorage.removeItem('token') 
                  localStorage.removeItem('email') 
                  localStorage.removeItem('valid') 
                  localStorage.removeItem('msg') 
                  localStorage.removeItem('type') 
-
                  localStorage.setItem('user',response.data.token);
                  localStorage.setItem('userId',response.data.userId);
                  localStorage.setItem('userName',response.data.username); 
@@ -120,22 +99,18 @@ class Otp extends Component {
             
             .catch(error=>{console.log(error.response); this.setState({loading:false});
              this.AlertError(error.response.data.message, "danger");});
-
             
             
            
         }
        // else this.AlertError("Make sure the Validations are correct", "warning");
-
     
-
     resendotp = ()=>{
         let formData ={};
         formData.token=this.state.Signup_token;
         formData.email=this.state.email;
        
         
-
         AuthService.otpResend(formData)
             .then(response => {console.log('Response:',response)
             this.AlertError("Please Check Your Email, Otp has been Re-sent to your Email Address", "success");
@@ -145,13 +120,10 @@ class Otp extends Component {
                
                 }
             else alert("Something went wrong")})
-
             .catch(error=>{console.log(error); 
                 this.AlertError("Make sure the Validations are correct", "warning")});
         
     }
-
-
     render() {
        
     
@@ -159,32 +131,26 @@ class Otp extends Component {
         
         let value=0;
         value= !value;
-
         if(this.state.alert.valid){
             alertContent = ( <Alert value={value} alertMsg ={this.state.alert.msg}
                                     alertType={this.state.alert.alertType} /> )
         }
-
         
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
           }
-
         const formElementsArray =[];
         for(let key in this.state.Form ){
             formElementsArray.push({
                 id:key,
                 config:this.state.Form[key]
             });
-
         };
-
         let SigninSumbitButton= <SumbitButton className={"Sumbit-btn"} Label={"Confirm OTP"}/>;
    
         if(this.state.loading){
             SigninSumbitButton= <SpinnerButton spinnerclass={"Sumbit-btn"}/>;
     }
-
         let form = (
           <div className="login-form-otp">
               
@@ -192,7 +158,6 @@ class Otp extends Component {
             
                 {
                     formElementsArray.map(x=> (
-
                       <Input 
                         key={x.id}
                         placeholder={x.config.placeholder}
@@ -200,7 +165,6 @@ class Otp extends Component {
                         type={x.config.type}
                         invalid={!x.config.valid}
                         changed={(event)=> this.inputchangeHandler(event,x.id)}/>
-
                     ))
                 }
                <p className="forgot-password" onClick={this.resendotp}> Resend Otp?</p>
@@ -211,7 +175,6 @@ class Otp extends Component {
             </form> 
             </div>
         );
-
         return (<div>
             {alertContent}
       
@@ -220,7 +183,6 @@ class Otp extends Component {
                 <MainPage 
                 heading1={"Please Verify"}
                 heading2={"your Email Address"}/>
-
                     {form}
             </div>
               </div>
@@ -228,6 +190,4 @@ class Otp extends Component {
     }
   
 }
-
-
 export default Otp;

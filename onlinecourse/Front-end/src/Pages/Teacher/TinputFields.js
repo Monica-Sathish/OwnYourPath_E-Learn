@@ -1,11 +1,6 @@
 import React from 'react';
 import './CSS/TeacherInput.css';
-
-
-
 const Tinput = (props)=> {
-
-
     
        
     let TinputElement = <textarea 
@@ -16,24 +11,17 @@ const Tinput = (props)=> {
                         onChange={props.changed}
                         />
        
-
        
-
     
-
     return(
-
         <div>
             <div>
                 <label className="Teacher-Label">{props.label}</label>
             </div>
-
-
             <div>
                 {TinputElement}            
             </div>
         </div>
     );
 }
-
 export default Tinput;

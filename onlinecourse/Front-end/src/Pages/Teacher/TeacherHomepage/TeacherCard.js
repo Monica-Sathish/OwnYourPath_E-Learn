@@ -39,8 +39,7 @@ class TeacherCard extends Component{
                           <p className="Course-info"> 
 
                             <span className="Course-rating">{this.props.rating}</span>  
-                            <span className="Course-star"> <Rating rating={this.props.rating}/></span> 
-                            <span className="Course-Price">₹ {this.props.price}</span>
+                            <span className="Course-star"> <Rating rating={this.props.rating}/></span>
                           </p>
 
                       </div>

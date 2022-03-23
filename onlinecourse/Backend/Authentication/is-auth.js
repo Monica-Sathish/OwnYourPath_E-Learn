@@ -1,17 +1,13 @@
 const jwt = require('jsonwebtoken');
 const api_key = require('../config/config');
-
 exports.authentication= (req,res,next)=>{
-
    let access_token = req.headers['authorization'];
    //console.log(access_token)
-
    if(!access_token){
       const error = new Error("not authenticated")
       error.statusCode=401;
       res.status(401).json({message:"not authenticated"})
    }
-
    else{
       let access = access_token.split(' ')[1];
       let payload;
@@ -24,7 +20,6 @@ exports.authentication= (req,res,next)=>{
          res.status(401).json({message:"not authenticated"})
          throw err;
       }
-
       if(!payload){
         const error = new Error("Not authenticated.");
         res.status(401).json({messages:"not authenticated"})
@@ -37,12 +32,9 @@ exports.authentication= (req,res,next)=>{
    }
    
 }
-
 // getting access token using refresh token
 exports.GetnewAccessToken = (req,res)=>{
-
    let refresh_token = req.body.refresh_token;
-
    if(!refresh_token){
       const error = new Error("not authenticated")
       error.statusCode=401;
@@ -70,11 +62,7 @@ exports.GetnewAccessToken = (req,res)=>{
                   return res.status(200).json({message:"Fetched token successfully",  access_token:access_token, 
                   refresh_token:referesh_token})
                }
-         })
-         
-           
-         
+         })       
       }
   
-      
    }

@@ -1,53 +1,37 @@
 import axios from './axiosUrl';
 class AuthServices {
-
-
     // --------------------- Authentication routes --------------------------
-
     // fetching 
     // RefreshToken(data){
     //     return axios.post('/auth/token',data);
     // }
-
     register(data) { 
         return axios.post('/signup',data)
      }
-
     otp(data){  
         return axios.post("/signup/otp",data)
       }
-
-
     otpResend(data){ 
         return axios.post('/signup/otp-resend',data)
     }
-
-
     login(data) { 
         return axios.post('/login',data)
     }
-
     VerifyEmail(data){ 
         return axios.post('/signup/resetOtp',data);
     }
-
     VerifyOtp(data){ 
         return axios.post('/signup/checkOtp',data);
     }
-
     ResetPassword(data){  
         return axios.post('/signup/reset-password',data);
     }
-
     logout(){
        localStorage.clear();
     }
-
-
     getCurrentUser(){
         return localStorage.getItem('user');
     }
-
     getUserName(){
        let userName=localStorage.getItem('userName');
        if(userName!=null)
@@ -55,17 +39,13 @@ class AuthServices {
         return userName;
     }
     
-
     //   ----------------------- end of auth routes --------------------
-
     AllCourses(){
         return axios.get('/home/allCourses')
     }
-
     HomepageCourse(CourseLink){
         return axios.get(`/home/${CourseLink}`)
     }
-
     PreferenceCourse(CourseLink,data){
         return axios.post(`/home/${CourseLink}`,data,{
             headers: {
@@ -74,12 +54,9 @@ class AuthServices {
             }
         })
     }
-
-
     UpdatedCourse(data){
         return axios.put('course/Update',data);
     }
-
     
     //Bookmark
     bookmarkCourses(userName,userId){
@@ -90,7 +67,6 @@ class AuthServices {
             }
         });
     }
-
     DeleteBookmark(data){
         return axios.post("/unbookmark",data,{
             headers: {
@@ -99,8 +75,6 @@ class AuthServices {
             }
         });
     }
-
-
     BookMark(CourseId,CourseName,data){
         return axios.post(`/home/${CourseId}/${CourseName}`,data,{
             headers: {
@@ -110,10 +84,6 @@ class AuthServices {
         })
     
     }
-
-
-
-
     FetchCourses(CourseName,CourseId){
         return axios.get(`/course/${CourseName}/${CourseId}`,{
             headers: {
@@ -123,11 +93,7 @@ class AuthServices {
         } )
     
     }
-
-
    
-
-
     Rating(data){
     return axios.put("/Rating",data,{
         headers: {
@@ -135,10 +101,8 @@ class AuthServices {
             Authorization: 'Bearer '+ localStorage.getItem('user')
         }
     } )}
-
    
   
-
     TeacherHomePage(data){
         return axios.post("/creater/homepage",data,{
             headers: {
@@ -147,8 +111,6 @@ class AuthServices {
             }
         })
     }
-
-
     TeacherCourseDelete(data){
         return axios.post("/course/delete",data,{
             headers: {
@@ -157,8 +119,6 @@ class AuthServices {
             }
         })
     }
-
     
 }
-
 export default new AuthServices();

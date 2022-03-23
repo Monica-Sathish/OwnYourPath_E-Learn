@@ -1,14 +1,11 @@
 import ReactStars from "react-rating-stars-component";
 import React, {Component} from "react";
 import AuthServices from "../../ApiServices/auth.service";
-
 class Rating extends Component {
     render(){
        
         let rating = (<p>Rating</p>);
-
         if(this.props.rating){
-
             const ratingChanged = (newRating) => {
                 const form ={}; 
                 form['courseId']=this.props.CourseId;
@@ -25,7 +22,6 @@ class Rating extends Component {
                 })
         
             };
-
             rating = (
             <ReactStars
                 edit={this.props.edit}
@@ -44,7 +40,5 @@ class Rating extends Component {
          
         );
     }
-
 }
-
 export default Rating;

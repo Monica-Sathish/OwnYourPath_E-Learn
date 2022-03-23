@@ -1,19 +1,13 @@
 import React,{Component} from 'react';
 import './CSS/CourseDesc.css';
-import {Link} from 'react-router-dom';
 import Rating from './Rating';
 import AuthServices from '../../ApiServices/auth.service';
-import Url from '../../ApiServices/BackendUrl';
-
-
 class CourseDesc extends Component {
-
     state ={
         bookmarked:this.props.bookmark,
         CourseId:this.props.CourseId,
         count:0,
     }
-
     static getDerivedStateFromProps(nextProps,prevState){
        //console.log("state of course desc=",prevState.bookmarked,"props",nextProps.bookmark);
     
@@ -29,12 +23,10 @@ class CourseDesc extends Component {
     
     
     bookmark=()=> {
-
         let user = localStorage.getItem('userId');
     
             const fd =new FormData();
             const form = {};
-
                 fd.append('_userID',user);
                 fd.append('_id',this.state.CourseId);
                 form['_userID']=user;
@@ -56,26 +48,20 @@ class CourseDesc extends Component {
                 })            
             
     
-
         } 
-
         
      render(){
             //console.log("count==",this.state.count)
             //console.log("Coruse desc = ", this.props.bookmark,this.state.bookmarked)
             let classArray = [""];
-
             if(this.state.bookmarked) {
                 classArray = ["bookmarked-color","fa fa-bookmark"]
             }
             else{
                 classArray= ["fa fa-bookmark-o"]
             }
-
         return(
-
             <div className="">
-
                 <p className="Course-title-main">{this.props.title}</p>
                 
                 <div className="Course-Rating-section">
@@ -86,30 +72,20 @@ class CourseDesc extends Component {
                             specialrating={true} 
                             CourseId={this.props.CourseId}/>
                     </div>
-
                     <p className="ratingtimesUpdated"> ( {this.props.ratingtimesUpdated} ratings )</p>
-
                 </div>
-
                 <div className="break1">
-
                 </div>
-
                 <div className="Short-Description">
                     <p>{this.props.short_description}</p>
                 </div>
-
                 <div className="break2">
-
                 </div>
-
-
                 <div className="Course-Teacher-bookmark">
                     <div className="Course-teacher-name">
                     <p>Created at {this.props.createdat}</p>
                     <h2>By {this.props.teacher}</h2>
                     </div>
-
                 <div className="flex-row">
                         <div className="Bookmarkbtn">
                         <i onClick={this.bookmark} 
@@ -117,14 +93,10 @@ class CourseDesc extends Component {
                             <p>BookMark</p>                     
                         </div>
                 </div>
-
                     
                 </div>
-
-
             </div>
         );
     
   }}
-
 export default CourseDesc;

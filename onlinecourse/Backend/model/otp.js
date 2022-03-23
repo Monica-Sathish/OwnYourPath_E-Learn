@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 const Security = new Schema({
     
    otp:{
@@ -14,8 +13,5 @@ const Security = new Schema({
     },
     
     createdAt: {type:Date,expires:'2m',default:Date.now},
-
-
 });
-
 module.exports = mongoose.model('Otp',Security);

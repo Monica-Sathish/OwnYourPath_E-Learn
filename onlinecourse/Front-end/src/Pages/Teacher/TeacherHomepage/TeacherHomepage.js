@@ -104,10 +104,8 @@ class TeacherHomePage extends Component {
                     rating={parseInt(item.rating.ratingFinal)}
                     Link={`/course/${this.state.CourseLink}/${item._id}`}
                     CourseId={item._id}
-                    price={item.price}
                     DeleteCourse={()=>this.DeleteCourse(item._id)}
                 />)
-    
             );
             
             if(CourseArray.length!==0){

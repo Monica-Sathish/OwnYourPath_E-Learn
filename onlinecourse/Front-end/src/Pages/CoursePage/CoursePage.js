@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './CSS/CoursePage.css'
-import {NavLink,Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import CourseDesc from './CourseDesc';
 import CourseVideo from './CourseVideo';
 import axios from '../../ApiServices/axiosUrl';
@@ -10,9 +10,7 @@ import parse from 'html-react-parser';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import AuthServices from '../../ApiServices/auth.service';
 import Rating from './Rating';
-
 class CoursePage extends Component {
-
     state = {
         CourseId: this.props.match.params.Courseid,
         CourseType:this.props.match.params.Course,
@@ -43,9 +41,7 @@ class CoursePage extends Component {
          'video2Duration':'0',
          'video3Duration':'0',
          'video4Duration':'0',
-
      }
-
     componentDidMount(){
       
       
@@ -56,9 +52,7 @@ class CoursePage extends Component {
             this.setState({CoursesInfo: response.data.course,
                            CurrentVideo:response.data.course.videoContent[0],
                            loading:false});
-
             let count=0;
-
         for(let j in response.data.course.videoContent){ 
             for (let i in response.data.course.videoContent[j].usersWatched){
                 if(localStorage.getItem('userId')===response.data.course.videoContent[j].usersWatched[i]){
@@ -91,9 +85,7 @@ class CoursePage extends Component {
             this.setState({['video'+i]:false})
         }
       }
-     
-
-       
+            
         if(playing){
             this.setState({playing:true})
         }
@@ -102,15 +94,11 @@ class CoursePage extends Component {
         }
    
     }
-
-
     videoCompleted=(index)=> {
      
        if(!this.state['video'+index+'Completed']) {
        this.setState(prevState => 
         ({WatchedVideoCount:prevState.WatchedVideoCount+1}));
-
-
         const form = {}; 
         form['courseId']= this.state.CourseId;
         form['userId']=localStorage.getItem('userId');
@@ -126,23 +114,18 @@ class CoursePage extends Component {
             console.log(error.response);
         })
        }
-
-   
        
        let progress = (this.state.WatchedVideoCount/this.state.CoursesInfo.videoContent.length)*100;
        this.setState({progress:progress})
        this.setState({['video'+index+'Completed']:true});
       
     }
-
     videoDuration =(duration,index)=>{
         this.setState({['video'+index+'Duration']:duration})
     }  
-
     render(){
         if(this.state.redirect)
         return <Redirect to={this.state.redirect}/>;
-
         let title = null;
         let short_description=null;
         let teacher=null;
@@ -160,9 +143,7 @@ class CoursePage extends Component {
         let playingVideo=false;
         let completed=false;
         let progressbar=null;
-
         if(this.state.loading ===false){
-
                 title = (this.state.CoursesInfo.title);
                 short_description = (this.state.CoursesInfo.discription);
                 teacher=(this.state.CoursesInfo.name)
@@ -192,17 +173,14 @@ class CoursePage extends Component {
                         playButton='VideoNotSelected';
                         playingVideo=false;
                     }
-
                     if(this.state['video'+index+'Completed']){
                         completed='VideoCompleted';
                     }
-
                     else if(!this.state['video'+index+'Completed']){
                         completed=false;
                     }
                 
                return(
-
                     <VideoList
                         key={index}
                         video={video}
@@ -218,32 +196,24 @@ class CoursePage extends Component {
                 
                      } )
                 );
-
-
         }
         
         if(this.state.progress===100){
         progressbar = <p>Congratulations {localStorage.getItem('userName')}!  
           <i className="fa fa-birthday-cake" style={{marginLeft:'5px'}} aria-hidden="true"></i></p>
         }
-
         else{
             progressbar=(<>
              <p>You have Completed <b>{this.state.progress.toPrecision(2)}% </b> of your course!</p>
                             <ProgressBar variant="success" now={this.state.progress} />
             </>);
         }
-
         return(
-
           
           <Layout >
             <div className="coursePage">
             
             <div className="container">
-                                
-                
-
                     <div className="Main-Section">
                     
                         <div className="Description-main">
@@ -257,14 +227,9 @@ class CoursePage extends Component {
                                         ratingtimesUpdated={ratingtimesUpdated}
                                         CourseType={this.state.CourseType}
                                         bookmark={bookmark}
-                         
                             />
-
                         </div>
-
                             <div className="Course-Video">
-               
-
                                 <CourseVideo playing={this.state.playing} 
                                     videoUrl={CurrentVideo}
                                     index={this.state.index}
@@ -273,35 +238,23 @@ class CoursePage extends Component {
                                     
                                               />
                             </div>
-
-
                      </div>
-
-
             <div className="Breakpoint"></div>
-
            <div className="Section2">
                 
                 <div className="section2part1">
                 
                         <div className="Small-nav-section">
-
                             <p >About</p>
                             {/* <p>Instructor</p>
                             <p>About</p> */}
-
-
                         </div>
-
-
-                            
                         <div className="flex-col-requirement">
                             
                             <h1>Requirement of this Course</h1>
                             <p>{requirement}</p>
                     
                         </div>
-
                             
                         <div className="flex-col-requirement">
                             
@@ -309,26 +262,20 @@ class CoursePage extends Component {
                             <p>{ longDescription}</p>
                     
                         </div>
-
                         <div className="flex-col-requirement">
                             
                             <h1>What will you learn from this course?</h1>
                             <p>{willLearn}</p>
                     
                         </div>
-
-
                  </div>
-
                     <div style={{marginBottom:"100px"}} className="flex-center">
         
                         {VideoUrl}
                         <div className='progressBar'>
                             
                            {progressbar}
-
                         </div>
-
                         <div className="progressBar">
                             <p className="Rating_coursePage">Rate the course here please</p>
                             <Rating style={{justifyContent:'center'}}
@@ -338,22 +285,11 @@ class CoursePage extends Component {
                                 CourseId={this.state.CourseId}/>
                         </div>
                      </div>
-
-                    
-
             </div>
-
-       
-            
-
-
         </div>
         </div>
         </Layout>
-
         );
     }
-
 }
-
 export default CoursePage;

@@ -1,9 +1,7 @@
 const Course = require('../model/courses');
 const User = require('../model/user');
-const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path= require('path')
-
 exports.CoursePage = (req,res,next)=>{
     // const courseName=req.params.courseName;
     const courseId=req.params.courseId;
@@ -16,13 +14,10 @@ exports.CoursePage = (req,res,next)=>{
         next()
     })
 }
-
 exports.Bookmark = (req,res,next)=>{
-
     const courseId=req.params.courseId;
     // const courseName=req.params.courseName;
     const userId = req.body._userID;
-
     User.findById({_id:userId})
     .then(user=>{
         if(!user.Bookmark.includes(courseId)){
@@ -68,11 +63,9 @@ exports.Bookmark = (req,res,next)=>{
     })
    
 }
-
 exports.ShowBookmark =(req,res,next)=>{
     const userId = req.params.userId;
     console.log(userId)
-
     User.findById({_id:userId})
     .populate('Bookmark')
     .exec()
@@ -85,11 +78,9 @@ exports.ShowBookmark =(req,res,next)=>{
         next()
     })
 }
-
 exports.unbookmark=(req,res,next)=>{
     const userId= req.body.userId;
     const courseId=req.body.id;
-
     User.findById({_id:userId})
     .then(user=>{
         user.Bookmark.splice(user.Bookmark.indexOf(courseId),1);
@@ -113,14 +104,11 @@ exports.unbookmark=(req,res,next)=>{
     .catch(err=>{
         console.log(err)
     })
-
    
 }
-
 exports.rating=(req,res,next)=>{
     const courseId=req.body.courseId;
     const new_Rating=req.body.rating;
-
     Course.findById({_id:courseId})
     .then(course=>{
         const total_rating=course.rating.ratingSum+new_Rating;
@@ -137,6 +125,4 @@ exports.rating=(req,res,next)=>{
         console.log(err);
         next();
     })
-
 }
-

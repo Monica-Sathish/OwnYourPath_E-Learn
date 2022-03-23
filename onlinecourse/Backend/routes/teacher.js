@@ -3,8 +3,6 @@ const router= express.Router();
 const multer = require('multer');
 const teacherController =require('../controllers/teacher');
 const Auth = require('../Authentication/is-auth');
-
-
 const ImagefileStorage = multer.diskStorage({
     destination:(req,file,cb)=>{
       cb(null,'images');
@@ -42,10 +40,8 @@ const ImagefileStorage = multer.diskStorage({
           console.log("wrong file type")}
   }
   
-
 const imageMulter=multer({storage:ImagefileStorage,fileFilter:ImagefileFilter}).single('image')
 const videoMulter=multer({storage:VideofileStorage,fileFilter:VideofileFilter}).any()
-
 router.post('/creator/create-course',imageMulter,teacherController.uploadCourse);
 router.post('/creator/videoUpload/:courseID',videoMulter,teacherController.uploadVideo);
 router.post('/creater/homepage',Auth.authentication,teacherController.teacherHome);
@@ -53,5 +49,4 @@ router.post('/course/delete',Auth.authentication,teacherController.deleteCourse)
 router.post('/course/edit',Auth.authentication,teacherController.editCourse);
 router.put('/course/Update',imageMulter,teacherController.updateCourse)
 router.post('/watchedByuser',teacherController.watchedByUsers)
-
 module.exports = router;

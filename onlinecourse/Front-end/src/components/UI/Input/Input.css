@@ -3,9 +3,6 @@
     padding:0px;
     box-sizing:border-box;
 }
-
-
-
 .InputElement {
     outline: none;
     border: 1px solid #4c4c4c;
@@ -20,30 +17,23 @@
     padding: 8px;
     box-sizing: border-box;
     
-
 }
-
 .InputElement:focus {
     outline:none;
-
     
 }
-
 .Invalid{
     border:1px solid red;
     /* color: rgb(155, 34, 34); */
     /* background: rgba(250, 128, 114, 0.815); */
   
 }
-
 .Valid{
     border: 1px solid #0daf90;
     /* background:rgba(41, 201, 41, 0.432); */
     color: black;
 }
-
 .error-msg{
-
     line-height:normal;
     padding:6px;
     

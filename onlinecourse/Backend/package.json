@@ -1,7 +1,7 @@
 {
-  "name": "courserabackend",
+  "name": "OwnYourPath",
   "version": "1.0.0",
-  "description": "backend of coursera",
+  "description": "E - Learning",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
@@ -10,7 +10,7 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "author": "Ayush",
+  "author": "Monica, Ram Haridhra",
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.6.1",

@@ -11,12 +11,8 @@ import Layout from '../../components/Layout/Layout'
 import Recommendation from './Recommendation';
 import './CSS/Homepage.css';
 import Url from '../../ApiServices/BackendUrl';
-
-
 class Homepage extends Component {
-
     IsMounted=false;
-
     state = {
         CourseLink: this.props.match.params.CourseName,
         Courses: this.props.Courses,
@@ -25,30 +21,22 @@ class Homepage extends Component {
         progress:0,
         redirect:null,
     }
-
-
     componentDidMount(){
         this.IsMounted=true;
-
         const fd =new FormData();
         const form = {};
         form['userId']=localStorage.getItem('userId');
         fd.append("userId",localStorage.getItem('userId'))
-
        
          if(this.state.CourseLink === "preferences" && this.IsMounted)
             this.props.fetchPreferenceCourses(this.state.CourseLink,form);
-
-
         // fetch all courses if redux store is empty
         if( this.IsMounted && !this.props.Courses.length)
             this.props.fetchCourses()
      }
-
      componentWillUnmount(){
          this.IsMounted=false;
      }
-
     render(){ 
         
         if(this.state.redirect){
@@ -62,28 +50,21 @@ class Homepage extends Component {
             height={50}
             width={50}
             className="loader"
-
              //3 secs
     
          />);
-
         if(this.props.Courses.length>0){
-
             // by default, it displays all the courses
             let CourseArray= this.props.Courses;
             console.log(CourseArray);
-
             if(this.state.CourseLink !== "all" && this.state.CourseLink!=="preferences"){
                 CourseArray = this.props.Courses.filter(course=>
                     course.category === this.state.CourseLink
                 );
             }
-
             // this is the preference link
             else if(this.state.CourseLink==="preferences")
                 CourseArray =this.props.PreferenceCourses; 
-
-
             data = (
               CourseArray.map(item => {
                let rating=[item ? item.rating.ratingFinal : 0];
@@ -109,16 +90,12 @@ class Homepage extends Component {
             
             BannerImage =   this.state.CourseLink 
             
-
             };
         
         return(
           <Layout>
             <div className="container">
-
-
                 <HomeBanner img={BannerImage}/>
-
                 <div className="mt-3 Course-Content"> 
                     <Categories/>
                     <div className="Course-Content-col">
@@ -128,18 +105,12 @@ class Homepage extends Component {
                                 </div>
                                 <Recommendation/>
                     </div>
-
                 </div>
-
-
-
             </div>
             </Layout>
         );
     }
-
 }
-
 const mapStateToProps = (state) => {
     return {
          Courses: state.filter.Courses,
@@ -153,5 +124,4 @@ const mapStateToProps = (state) => {
          fetchPreferenceCourses:(CourseLink,form)=>dispatch(actionCreators.fetchAsyncPreferenceCourse(CourseLink,form))
     };
   };
-
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

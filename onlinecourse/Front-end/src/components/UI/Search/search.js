@@ -2,15 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import styles from './search.module.css';
 import { connect } from "react-redux";
-import * as actionCreators from "../../../store/actions/actions";
-
-
-
 function Search(props){
-
     const [query,setQuery]=React.useState(false);
     const [isOpen,setOpen]=React.useState(false);
-
     React.useEffect(() => {
         let handler = (event) => {
           if (!searchNode.current.contains(event.target)) {
@@ -35,12 +29,10 @@ function Search(props){
             return courses.filter(course=>{
                 const title=course.title.toLowerCase();
                 const name=course.name.toLowerCase();
-
                 return title.includes(query.toLowerCase()) || name.includes(query.toLowerCase()); 
             })
         }
     } 
-
     let SearchItems = filteredSubjects(props.Courses,query);
  
     // defining useref hook
@@ -48,7 +40,6 @@ function Search(props){
     
     
     
-
     return (   
         <div>
         <form className="form-inline my-2 my-lg-0">
@@ -60,7 +51,6 @@ function Search(props){
             {/* <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button> */}
            
         </form>
-
             <div className={styles.searchItems} ref={searchNode}>
             {isOpen ? <ul>
                 {SearchItems.map((item,index)=>{
@@ -77,12 +67,9 @@ function Search(props){
         </div>
   )
 }
-
-
 const mapStateToProps = (state) => {
     return {
          Courses: state.filter.Courses,
     };
   };
-
 export default connect(mapStateToProps, null)(Search);

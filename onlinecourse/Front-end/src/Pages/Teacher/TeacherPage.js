@@ -11,15 +11,9 @@ import AuthServices from '../../ApiServices/auth.service';
 import Alert from '../Auth/Forms/alert';
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import CKEditorArea from './CKEditor';
-
-
-
 class TeacherPage extends Component{
-
-
     state = { 
         Form:{
-
              title: {
                 label: "Title",
                 rows: "1",
@@ -56,7 +50,6 @@ class TeacherPage extends Component{
                  placeholder: 'Entereg: In this course you will learn how to build professional website from scratch and how to make it responsive. Course Title',
                  value: "",
                  valid:true,
-
                  validation: {
                     required: true,
                    
@@ -64,7 +57,6 @@ class TeacherPage extends Component{
                  
                
              },
-
              category: {
                 value: "",
                 valid:true,
@@ -77,11 +69,9 @@ class TeacherPage extends Component{
                 "AI / ML": false,
                 "Cloud Development":false,
                 "Data Science":false,
-
                 
             
             },
-
             image:{
                 value:'',
                 name:'',
@@ -90,9 +80,7 @@ class TeacherPage extends Component{
                     
                 },
                 valid:true,
-
             },
-
             name:{
                 label: "Enter your Name",
                 rows: "1",
@@ -106,12 +94,10 @@ class TeacherPage extends Component{
                 },
                  valid:false,
             },
-
             _id: {
                 value: localStorage.getItem('userId'),
                 valid:true,
             },
-
             willLearn:{
                 label: "What will the students learn from this?",
                 rows: "5",
@@ -125,7 +111,6 @@ class TeacherPage extends Component{
                 },
                  valid:false,
             },
-
             requirement:{
                 label: "What are the requirements of this course?",
                 rows: "5",
@@ -139,7 +124,6 @@ class TeacherPage extends Component{
                 },
                  valid:false,
             },
-
             price:{
                 label: "Price of this course (INR)?",
                 rows: "1",
@@ -153,7 +137,6 @@ class TeacherPage extends Component{
                 },
                  valid:false,
             },
-
             
      
     },
@@ -173,7 +156,6 @@ class TeacherPage extends Component{
     redirect:false,
     
 }
-
     componentDidMount(){
         let userToken = AuthServices.getCurrentUser();
         let userName= AuthServices.getUserName();
@@ -182,15 +164,12 @@ class TeacherPage extends Component{
         }
         
     }
-
     checkValidity(value,rules){
         let isValid = true;
       
-
         if(rules.required){
             isValid =value.trim()!=='' && isValid;
         }
-
         if(rules.minLength){
             isValid = value.length >= rules.minLength  && isValid;
         }
@@ -199,19 +178,14 @@ class TeacherPage extends Component{
         if(rules.maxLength){
             isValid = value.length <= rules.maxLength  && isValid;
         }
-
        
-
         return isValid;
         
      }
-
      OverallValidity = ()=>{
-
         for(let validate in this.state.Form){
            
             
-
             if(!this.state.Form[validate].valid){
                 return false;
             }
@@ -227,11 +201,8 @@ class TeacherPage extends Component{
         AlertArray.valid=true;
         AlertArray.alertType=alertType;
         this.setState({alert:AlertArray});
-
     }
-
     CKEditorHandler  =(event,editor,Title)=> {
-
         const data =editor.getData();
         const updatedForm = {
             ...this.state.Form
@@ -239,77 +210,52 @@ class TeacherPage extends Component{
         updatedForm[Title].value=data;
         updatedForm[Title].valid=this.checkValidity(data, updatedForm[Title].validation)
         this.setState({Form:updatedForm})
-
     }
-
-
     inputchangeHandler = (event,inputIdentifier)=> {
-
         const updatedForm = {
             ...this.state.Form
         }
         const updatedElement = {...updatedForm[inputIdentifier]}
         
-
         updatedElement.value = event.target.value;
-
-
         updatedForm[inputIdentifier] = updatedElement;
-
         updatedElement.valid = this.checkValidity(updatedElement.value,
             updatedElement.validation);
-
-
         this.setState({Form: updatedForm});
-
     }
-
     categoryHandler = (CourseName)=>{
-
         const Coursecategory = {...this.state.Form};
        
         Coursecategory.category.value = CourseName;
      
-
         for(let x in this.state.CourseNames){
-
             if(this.state.CourseNames[x]!==CourseName){
                 Coursecategory.category[this.state.CourseNames[x]]=false;
                // console.log(this.state.CourseNames[x])
             }
         }
-
         Coursecategory.category[CourseName]=true;
         
         this.setState({Form:Coursecategory});
       
        
     }
-
-
-
     fileSelectorHandler = event =>{
     
         const selectedfile= {...this.state.Form};
-
         selectedfile.image.value= event.target.files[0];
        
         selectedfile.image.name= URL.createObjectURL(event.target.files[0]);
         this.setState({Form:selectedfile })
             //console.log(selectedfile)
     }
-
-
     
-
-
     sumbitButton =()=> {
         
         this.setState({alertPressed:true})
         setTimeout( ()=> this.setState({alertPressed:false}) , 2000);
   
         const fd = new FormData();
-
       
         for(let formElement in this.state.Form){
             
@@ -317,12 +263,8 @@ class TeacherPage extends Component{
             
             console.log(formElement,this.state.Form[formElement].value);
         }
-
-
        
-
         if(this.OverallValidity()){
-
                 axios.post('creator/create-course',fd,{
                     onUploadProgress: progressEvent => {
                         //console.log("Progress bar");
@@ -346,9 +288,7 @@ class TeacherPage extends Component{
                     this.setState({CourseId:res.data.newCourse._id})
                     this.AlertError("Your Course has been saved!", "success");
                     setTimeout( ()=> this.setState({redirect:true}) , 2000);
-
                 })
-
                 .catch(error => { console.log(error.response)
                     this.AlertError(error.response.data.message, "danger");
                     // if(error.response.data.message ==="jwt malformed" )
@@ -362,9 +302,7 @@ class TeacherPage extends Component{
     }
  
     
-
     render(){
-
     
         let classWeb=[];
         let classML=[];
@@ -384,18 +322,15 @@ class TeacherPage extends Component{
             />
         }
         
-
         if(this.state.Form.category['Web Development']){
             classWeb=['ButtonClicked']
             //console.log("clicked11",classWeb.join(' '),this.state.Form.category['Web Development'])
         }
         else classWeb=[];
-
         if(this.state.Form.category['Programming Languages']){
             classPL=['ButtonClicked']
         }
         else classPL=[];
-
         if(this.state.Form.category['Cloud Development']){
             classCd=['ButtonClicked']
             //console.log("clicked11",classWeb.join(' '),this.state.Form.category['Web Development'])
@@ -407,24 +342,18 @@ class TeacherPage extends Component{
             //console.log("clicked11",classWeb.join(' '),this.state.Form.category['Web Development'])
         }
         else classDs=[];
-
         if(this.state.Form.category['AI / ML']){
             classML=['ButtonClicked']
         }
         else classML=[];
-
-
         let uploadedPercentage = this.state.uploadedPercentage;
-
         
         if(this.state.Form.image.value){
              fileName=this.state.Form.image.value.name;
              
         }
-
       
         
-
         if(this.state.alert.valid){
             alertContent = ( <Alert alertMsg ={this.state.alert.msg} 
                                     alertType={this.state.alert.alertType} 
@@ -436,21 +365,15 @@ class TeacherPage extends Component{
         }
           
       
-
         return(
-
           
     <Layout >
         <div className="container-fluid-main">
-
             {alertContent}
-
             <div className="Welcome-msg">
                 
                     {Welcome}
-
             </div>
-
         
         <div className="Teacher-Head-Class">
         
@@ -462,11 +385,7 @@ class TeacherPage extends Component{
                 placeholder={this.state.Form.name.placeholder}
                 changed={(event)=> this.inputchangeHandler(event,"name")}
                 />
-
-
         </div>
-
-
           
         <div className="Teacher-Head-Class">
         
@@ -478,14 +397,9 @@ class TeacherPage extends Component{
             placeholder={this.state.Form.title.placeholder}
             changed={(event)=> this.inputchangeHandler(event,"title")}
             />
-
-
         </div>
-
      <div className="Teacher-Courses-Buttons-head">
-
             <p className="CourseCategoryTitle">Course Category</p>
-
             <div className="Teacher-Courses-Buttons">
                         <button onClick={()=> this.categoryHandler("Web Development")} className={classWeb.join(' ')} > Web Development</button>
                         <button className={classPL.join(' ')} onClick={()=> this.categoryHandler("Programming Languages")}>Programming Languages</button>
@@ -494,12 +408,8 @@ class TeacherPage extends Component{
                         <button className={classDs.join(' ')} onClick={()=> this.categoryHandler("Data Science")}> Data Science</button>
                         
             </div>
-
         </div>    
-
-
            
-
    
             <TeacherTittle TitleDesc={"Description of your Course"}/>
             
@@ -511,9 +421,7 @@ class TeacherPage extends Component{
             placeholder={this.state.Form.discription.placeholder}
             changed={(event)=> this.inputchangeHandler(event,"discription")}
             />
-
         </div>
-
         <div className="Teacher-Head-Class">
             <CKEditorArea
             label={this.state.Form.discriptionLong.label}
@@ -525,12 +433,8 @@ class TeacherPage extends Component{
             
            // changed={(event)=> this.inputchangeHandler(event,"discriptionLong")}
             />
-
         </div>
-
-
         <div  className="Teacher-Head-Class">
-
         <CKEditorArea
             label={this.state.Form.willLearn.label}
             rows={this.state.Form.willLearn.rows}
@@ -543,9 +447,7 @@ class TeacherPage extends Component{
             />
         
         </div>
-
         <div  className="Teacher-Head-Class ckeditor">
-
         <CKEditorArea
             label={this.state.Form.requirement.label}
             rows={this.state.Form.requirement.rows}
@@ -554,7 +456,6 @@ class TeacherPage extends Component{
             changed={(event,editor)=> this.CKEditorHandler(event,editor,"requirement")} />
         
         </div>
-
         <div className="Teacher-Head-Class">
            
             <Tinput
@@ -564,12 +465,9 @@ class TeacherPage extends Component{
             placeholder={this.state.Form.price.placeholder}
             changed={(event)=> this.inputchangeHandler(event,"price")}
             />
-
         </div>
         
          {/* <button className="NextBtn">Next</button>  */}
-
-
             <div className="Teacher-Head-Class">
             
             
@@ -577,35 +475,27 @@ class TeacherPage extends Component{
                     <input type="file" name='file'  onChange={this.fileSelectorHandler}/>
                     Upload Image
             </label>
-
             <p className="ImageName">{fileName}</p>
             <img className="" 
                 src={this.state.Form.image.name} alt="No file Selected"/>
-
             
             </div>
-
         
             <div className="Welcome-msg sumbitVideoBtn">
                 <button onClick={this.sumbitButton} >Next</button>
             </div>
-
           <div>
               {uploadedPercentage>0 ? <ProgressBar now={uploadedPercentage}
                     label={`${uploadedPercentage}%`}/> :null }
           </div> 
             
-
           
         </div>
     </Layout>
         
-
-
         );
     }
 }
-
 // const mapStateToProps = (state) => {
 //     return {
 //          Courses: state.filter.Courses,
@@ -619,5 +509,4 @@ class TeacherPage extends Component{
         //  fetchPreferenceCourses:(CourseLink,form)=>dispatch(actionCreators.fetchAsyncPreferenceCourse(CourseLink,form))
     };
   };
-
 export default connect(null, mapDispatchToProps)(TeacherPage);

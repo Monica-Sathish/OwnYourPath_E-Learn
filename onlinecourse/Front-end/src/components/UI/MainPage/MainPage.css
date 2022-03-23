@@ -3,7 +3,6 @@
   letter-spacing: 3.16px;
   line-height: normal;
 }
-
 .heading-1,
 .heading-2,
 .heading-3,
@@ -13,24 +12,19 @@
 .heading-1 {
   color: #3c4852;
 }
-
 .heading-2 {
   color: #3c4852;
 }
-
 .heading-3,
 .heading-4 {
   color: #0daf90;
 }
-
 .MainPageback {
 }
-
 .circle1,
 .circle2 {
   position: absolute;
 }
-
 .circle1 {
   width: 300px;
   left: 0px;
@@ -41,7 +35,6 @@
   bottom: -150px;
   left: -120px;
 }
-
 @media (max-width: 700px) {
   .Content-text {
     display: none;

@@ -1,17 +1,13 @@
 import axios from 'axios';
 import url from './BackendUrl';
-
 const instance = axios.create(
     {
         baseURL: url
     }
-
 );
-
 instance.interceptors.response.use((response) => {
     return response
  }, function (error) {
-
     const originalRequest = error.config;
     console.log(originalRequest);
     
@@ -57,9 +53,7 @@ instance.interceptors.response.use((response) => {
             
         }
     }
-
    
     return Promise.reject(error);
  });
-
 export default instance;

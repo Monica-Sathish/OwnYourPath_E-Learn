@@ -11,13 +11,11 @@
   flex-direction: column;
   margin-left: 30px;
 }
-
 .Interest-banner {
   margin-top: 50px;
   margin-left: 30px;
   position: relative;
 }
-
 .Interest-banner img {
   display: flex;
   background: transparent linear-gradient(270deg, #00000000 0%, #000000 100%) 0%
@@ -30,7 +28,6 @@
   z-index: 2;
   border-radius: 6px;
 }
-
 .Interest-banner p {
   position: absolute;
   top: 20%;
@@ -40,7 +37,6 @@
   opacity: 1;
   z-index: 10;
 }
-
 .Interest-banner button {
   position: absolute;
   top: 35%;
@@ -56,27 +52,22 @@
   background: #ffffff 0% 0% no-repeat padding-box;
   border-radius: 8px;
 }
-
 .loader {
   margin-top: 10%;
   margin-left: 40%;
 }
-
 .productLink {
   text-decoration: none;
 }
-
 .productLink:hover {
   opacity: 0.9;
   text-decoration: none;
 }
-
 @media (min-width: 1200px) {
   .container {
     max-width: 1300px !important;
   }
 }
-
 @media (max-width: 991px) {
   .Interest-banner button {
     left: 65%;
@@ -92,19 +83,16 @@
     margin-left: 0px !important;
   }
   /* .container{ max-width:991px !important;} */
-
   .Course-Content,
   .Course-Content-wrap {
     justify-content: center;
   }
 }
-
 @media (max-width: 550px) {
   .loader {
     /* margin-bottom:100px; */
     margin: 100px auto;
   }
-
   .Interest-banner button {
     left: 100px;
     top: 100px;
@@ -113,7 +101,6 @@
     width: 150px;
     height: 30px;
   }
-
   .container {
     padding: 0px !important;
     margin: 0px !important;
@@ -125,7 +112,6 @@
     font: normal normal normal 12px/10px Gilroy;
     padding-top: 0px;
   }
-
   .Course-Content-col {
     margin-left: 0px;
   }
@@ -137,7 +123,6 @@
     margin-bottom: 0px;
   }
 }
-
 @media (max-width: 467px) {
   .Interest-banner button {
     left: 60px;
@@ -145,7 +130,6 @@
     margin-top: 0px;
     left: 30%;
   }
-
   .Interest-banner p {
     font: normal normal 600 15px/31px Gilroy;
     top: 10%;

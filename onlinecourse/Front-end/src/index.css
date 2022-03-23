@@ -4,7 +4,6 @@
   font-weight: normal;
   font-style:normal;
 }
-
 body {
   
   margin: 0;
@@ -14,21 +13,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
 /* scroll bar */
-
-
 ::-webkit-scrollbar {
   background-color:#fff;
   width:16px
 }
-
 /* background of the scrollbar except button or resizer */
 ::-webkit-scrollbar-track {
   background-color:#fff
@@ -36,7 +29,6 @@ code {
 ::-webkit-scrollbar-track:hover {
   background-color:#f4f4f4
 }
-
 /* scrollbar itself */
 ::-webkit-scrollbar-thumb {
   background-color:#babac0;

@@ -140,22 +140,7 @@ class TeacherPage extends Component{
                     
                 },
                  valid:false,
-            },
-
-            price:{
-                label: "Price of this course (INR)?",
-                rows: "1",
-                cols: "50",
-                placeholder: '100',
-                value: "",
-                validation: {
-                    required: true,
-                    minLength:1,
-                    
-                },
-                 valid:false,
             }
-     
     },
      
     alert: {
@@ -416,7 +401,6 @@ class TeacherPage extends Component{
         let classPL=[];
         let Welcome = null;
         let alertContent = null;
-        let price=null;
         
        
         if(this.state.redirect){
@@ -491,7 +475,6 @@ class TeacherPage extends Component{
             //category=this.state.CourseDetails.category;
             requirement=this.state.CourseDetails.requirement;
             willLearn=this.state.CourseDetails.willLearn;
-            price=this.state.CourseDetails.price;
            // file=this.state.CourseDetails.imageurl;
 
           data = (   <>
@@ -615,18 +598,7 @@ class TeacherPage extends Component{
 
                     {/* <button className="NextBtn">Next</button>  */}
 
-                    <div className="Teacher-Head-Class">
-           
-                        <Tinput
-                        label={this.state.Form.price.label}
-                        rows={this.state.Form.price.rows}
-                        cols={this.state.Form.price.cols}
-                        placeholder={this.state.Form.price.placeholder}
-                        value={price}
-                        changed={(event)=> this.inputchangeHandler(event,"price")}
-                        />
-
-                    </div>
+                    
        
 
 

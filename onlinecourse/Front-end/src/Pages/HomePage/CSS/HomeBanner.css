@@ -1,7 +1,6 @@
 .BannerSection{  
     display:flex;
 }
-
 .BannerImage{
     position: relative !important;
     width: 100%;
@@ -14,9 +13,7 @@
     background-repeat: no-repeat;
     background-position: top;
     object-fit: fill;
-
 }
-
 .Banner-text{
     position: absolute;
     top:20%;
@@ -28,7 +25,6 @@
     opacity: 1;
     z-index:10;
 }
-
 .Teacher-text{
     font: normal normal 47px/75px Gilroy;
     letter-spacing: 1.24px;
@@ -39,7 +35,6 @@
     width:700px;
     
 }
-
 .Teacher-banner{
     display: flex;
     justify-content: space-around;
@@ -47,7 +42,6 @@
     flex-wrap:wrap;
     margin:50px;
 }
-
 .createCourse{
     
     background: #0daf90 0% 0% no-repeat padding-box;
@@ -60,18 +54,14 @@
     color: #FFFFFF;
     align-self:center;
 }
-
-
 @media(max-width:1200px){
     .createCourse{
         
         width: 200px;
         height: 55px;
         font: normal normal 300 18px/20px Gilroy;
-
     }
     .Teacher-text{
-
         font: normal normal 27px/55px Gilroy;
         letter-spacing: 1.24px;
         color: #0daf90;
@@ -83,15 +73,10 @@
     }
     
 }
-
-
 @media(max-width:992px){
-
     .Banner-text{
         font: normal normal 600 45px/76px Gilroy;
     }
-
-
     .BannerImage{ 
         height:190px;
     }
@@ -100,10 +85,8 @@
         width: 200px;
         height: 48px;
         font: normal normal 300 18px/20px Gilroy;
-
     }
     .Teacher-text{
-
         font: normal normal 27px/55px Gilroy;
         letter-spacing: 1.24px;
         color: #0daf90;
@@ -114,19 +97,14 @@
         
     }
     
-
 }
-
 @media (max-width: 690px){
     .Teacher-text{
         display:none;
     }
 }
-
 @media (max-width:646px){
-
     .BannerImage{
-
         height:160px;
     }
     .Banner-text{
@@ -137,10 +115,8 @@
         width: 200px;
         height: 48px;
         font: normal normal 300 18px/20px Gilroy;
-
     }
     .Teacher-text{
-
         font: normal normal 27px/55px Gilroy;
         letter-spacing: 1.24px;
         color: #0daf90;
@@ -150,9 +126,7 @@
         width:320px;
         
     }
-
 }
-
 @media (max-width:400px){
     .BannerImage{
         height:130px;
@@ -160,5 +134,4 @@
     .Banner-text{
         font: normal normal 600 30px/36px Gilroy;
     }
-
 }

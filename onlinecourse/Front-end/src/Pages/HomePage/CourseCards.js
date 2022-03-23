@@ -1,7 +1,6 @@
 import React from "react";
 import './CSS/CategoriesCard.css';
 import Rating from '../CoursePage/Rating';
-
 const CourseCards =(props)=>{
     return(
               
@@ -23,10 +22,6 @@ const CourseCards =(props)=>{
                       </div>
                </div>
       );
-
       }
-
 export default CourseCards;
-
-
              
