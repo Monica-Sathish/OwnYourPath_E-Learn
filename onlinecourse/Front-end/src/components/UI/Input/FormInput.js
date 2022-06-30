@@ -14,7 +14,7 @@ const input = (props)=> {
         const index =inputclasses.indexOf('pop');
         if(index>-1) inputclasses.splice(index,1);
           inputclasses.push("Valid"); }
-    let error = <p>s</p>;
+    let error = <p>error</p>;
     if(props.msg!=="" && props.touched)  
         error = <p className="text-success error-msg">{props.msg}</p>;
     if(props.errors!=="" && props.touched)

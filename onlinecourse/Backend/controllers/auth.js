@@ -57,8 +57,8 @@ exports.signup = (req,res)=>{
                 to:email,
                 from:"ownyourpath.urs@gmail.com",
                 subject:"OTP Verification",
-                html:` '<h1>Please Verify your account using this OTP: !</h1>
-                        <p>OTP:${otp}</p>'`
+                html:`<h1>Please Verify your account using this OTP: !</h1>
+                        <p>OTP:${otp}</p>`
             })
             console.log("mail sent")
         })

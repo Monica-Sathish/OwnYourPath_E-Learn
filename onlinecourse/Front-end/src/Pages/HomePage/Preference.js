@@ -156,7 +156,7 @@ AlertError(alertmsg, alertType) {
                     
                 </div>
             <div className="SumbitBtn">
-                    <button  onClick={this.sumbitHandler}>SUMBIT</button>
+                    <button  onClick={this.sumbitHandler}>SUBMIT</button>
                 </div>
             </div>
         </Layout>

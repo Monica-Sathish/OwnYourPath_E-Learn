@@ -17,7 +17,6 @@ const CourseCards =(props)=>{
                                   edit={false}/>
                             </span> 
                             <span className="CourseTimesUpdated">({props.ratingtimesUpdated} ratings)</span>
-                            <span className="Course-Price">₹ {props.price}</span>
                           </p>
                       </div>
                </div>
